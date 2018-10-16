@@ -1,0 +1,14 @@
+[Unit]
+Description=Node.js Supply chain service node
+
+[Service]
+PIDFile=/tmp/supply_chain-3000.pid
+User=ubuntu
+Group=root
+Restart=always
+KillSignal=SIGQUIT
+WorkingDirectory=/opt/gopath/src/github.com/deevotech/supply-chain-service
+ExecStart=/opt/gopath/src/github.com/deevotech/supply-chain-service/bin/www
+
+[Install]
+WantedBy=multi-user.target
