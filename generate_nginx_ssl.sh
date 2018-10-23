@@ -21,8 +21,8 @@ echo "server {
 }
 
 server {
-    listen 433 ssl http2 default_server;
-    listen [::]:443 ssl http2 default_server;
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
 
     server_name localhost;
     error_page 497 https://localhost$request_uri;
@@ -32,6 +32,11 @@ server {
     ssl on;
     ssl_certificate /etc/nginx/ssl/server.crt;
     ssl_certificate_key /etc/nginx/ssl/server.key;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; 
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH'; 
+    #SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
+    #SSLHonorCipherOrder on
 
     # other vhost configuration
     location / {
